@@ -1,2 +1,2 @@
-# DEMO-FOR-C-
+# DEMO-FOR-C/C++
 DEMO FOR C++
