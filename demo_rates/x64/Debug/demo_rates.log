@@ -1,3 +1,4 @@
 ﻿  STLdemo_评委打分.cpp
 F:\VisiualStudioCode\C-PLUS-DEMO\demo_rates\STLdemo_评委打分.cpp(77,27): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+F:\VisiualStudioCode\C-PLUS-DEMO\demo_rates\STLdemo_评委打分.cpp(121,27): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
   demo_rates.vcxproj -> F:\VisiualStudioCode\C-PLUS-DEMO\demo_rates\x64\Debug\demo_rates.exe

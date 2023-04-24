@@ -44,11 +44,56 @@ void createPerson(vector<Person> &v)
 //打分函数
 void setScore(vector<Person> &v)
 {
-	for (auto i: v)
+	for (vector<Person>::iterator it = v.begin();it != v.end();it++)
 	{
 		//将评委的分数 放入到deque容器中
 		deque<int> d;
 		for(int i = 0; i < 10; i++ )
+		{
+			int score = rand() % 41 + 60;   // 60-100
+			d.push_back(score);
+		}
+
+		cout << "选手：" << it->name << "-----打分：" << endl;
+		for (auto k : d)
+		{
+			cout << k << "  ";
+		}
+		cout << endl;
+		//先排序
+		sort(d.begin(), d.end());
+
+		//去除最高分和最低分
+		d.pop_back();
+		d.pop_front();
+
+		//取平均分
+		int sum = 0;
+		for (auto j : d)
+		{
+			sum += j;
+		}
+
+		int avg = sum / d.size();
+
+		//将平均分给选手
+		it->m_Score = avg;
+
+		cout << endl;
+		cout << it->m_Score;
+		cout << endl;
+	}
+}
+
+//打分函数2
+void setScore2(vector<Person>& v)
+{
+	/*   这是里重点，如果想要修改值，则需要传入引用的方式  auto& i   */
+	for (auto& i:v)
+	{
+		//将评委的分数 放入到deque容器中
+		deque<int> d;
+		for (int i = 0; i < 10; i++)
 		{
 			int score = rand() % 41 + 60;   // 60-100
 			d.push_back(score);
@@ -78,12 +123,12 @@ void setScore(vector<Person> &v)
 
 		//将平均分给选手
 		i.m_Score = avg;
+
 		cout << endl;
 		cout << i.m_Score;
 		cout << endl;
 	}
 }
-
 void printScore(vector<Person> &p)
 {
 	for (auto i2 : p)
@@ -97,8 +142,30 @@ void printScore(vector<Person> &p)
 	}
 
 }
+
+
+
+//test
+void test()
+{
+	vector<int> arr;
+	for (int i = 0; i < 4; i++)
+	{
+		arr.push_back(i);
+	}
+	for (auto& it : arr) {
+		cout << "00000000000000000000000000000000000" << endl;
+		cout << it* 2 << endl;
+		cout << "00000000000000000000000000000000000" << endl;
+	}
+
+}
+
+
 int main()
 {
+	//test();
+
 	//随机数种子
 	srand((unsigned int)time(NULL));
 
@@ -113,7 +180,8 @@ int main()
 	}
 
 	//2.给5名选手打分
-	setScore(v);
+	//setScore(v);
+	setScore2(v);
 
 	//3.显示最后得分
 	printScore(v);
