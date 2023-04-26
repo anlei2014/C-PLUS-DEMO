@@ -1,0 +1,5 @@
+﻿  demo2.cpp
+F:\VisiualStudioCode\C-PLUS-DEMO\demo2\demo2.cpp(64,28): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+F:\VisiualStudioCode\C-PLUS-DEMO\demo2\demo2.cpp(74,25): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+F:\VisiualStudioCode\C-PLUS-DEMO\demo2\demo2.cpp(84,24): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+  demo2.vcxproj -> F:\VisiualStudioCode\C-PLUS-DEMO\demo2\x64\Debug\demo2.exe
