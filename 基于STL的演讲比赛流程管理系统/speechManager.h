@@ -4,7 +4,8 @@
 #include "speaker.h"
 #include <map>
 #include <algorithm>
-
+#include <functional>
+#include <numeric>
 
 using namespace std;
 
@@ -37,6 +38,11 @@ public:
 
 	//抽签
 	void speechDraw();
+
+	//比赛
+	void speechContest();
+
+
 
 	//成员属性
 	// 保存第一轮比赛选手编号容器

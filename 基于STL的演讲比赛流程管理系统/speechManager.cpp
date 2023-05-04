@@ -1,4 +1,5 @@
 #include "speechManager.h"
+#include <deque>
 
 /*
 
@@ -91,7 +92,7 @@ void SpeechManager::startSpeech()
 	//1.抽签
 	this->speechDraw();
 	//2.比赛
-
+	this->speechContest();
 	// 3.显示晋级结果
 
 	// 第二轮开始比赛
@@ -134,6 +135,81 @@ void SpeechManager::speechDraw()
 	cout << "----------------------------------------------------" << endl;
 	system("pause");
 	cout << endl;
+}
+
+void SpeechManager::speechContest()
+{
+	cout << "-------------- 第" << this->m_Index << "轮比赛正式开始----------------------" << endl;
+
+	//准备临时容器，存放小组成绩
+	multimap<double, int, greater<double>> groupScore;
+
+	int num = 0;   // 记录人员个数，6人一组
+
+	vector<int> v_Src;   //比赛选手容器
+	if (this->m_Index == 1)
+	{
+		v_Src = v1;
+	}
+	else
+	{
+		v_Src = v2;
+	}
+
+	// 遍历所有选手进行比赛
+	for (auto i : v_Src)
+	{
+		num++;
+		//评委打分
+		deque<double> dq;
+		for (int i = 0; i < 10; i++)
+		{
+			double score = (rand() % 401 + 600) / 10.f;   //600 ` 1000
+			//cout << score << " ";
+			dq.push_back(score);
+		}
+
+		sort(dq.begin(), dq.end(),greater<double>());   // 排序
+
+		dq.pop_front();    // 去除最高分
+		dq.pop_back();		//去除最低分
+
+		double sum = accumulate(dq.begin(), dq.end(), 0.0f);
+		double avg = sum / (double)dq.size();     // 平均分
+
+		//打印评分均
+		//cout << "编号：" << i << "姓名：" << this->m_Speaker[i].m_Name << "获取平均分：" << avg << endl;
+
+
+		// 将平均分放入到map
+		this->m_Speaker[i].m_Score[this->m_Index - 1] = avg;
+
+		//将打分数据 放入到临时小组容器中
+		groupScore.insert(make_pair(avg, i));   // key是得分，vaule是具体选手编号
+
+		// 每6人取出前三名
+		if (num % 6 == 0)
+		{
+			cout << "第" << num / 6 << "小组比赛名次：" << endl;
+			for (auto j : groupScore)
+			{
+				cout << "编号：" << j.second << "姓名：" << this->m_Speaker[j.second].m_Name << "成绩：" << this->m_Speaker[j.second].m_Score[this->m_Index - 1] << endl;
+			}
+
+
+
+
+			groupScore.clear();   //小组清空
+
+		}
+
+
+
+
+
+	}
+	cout << endl;
+
 }
 
 //析构函数的实现
